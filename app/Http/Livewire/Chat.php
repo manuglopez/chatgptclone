@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-
-
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -17,7 +15,7 @@ class Chat extends Component
 
     public $message;
 
-    public function render(): View | Factory
+    public function render(): View|Factory
     {
         $this->messages = collect(session('messages', []))->reject(fn ($message) => $message['role'] === 'system');
 
@@ -34,11 +32,11 @@ class Chat extends Component
     /**
      * Sends a message to GPT API.
      *
-     * @param Request $request
+     *
      *
      * @throws JsonException
      */
-    public function store(Request $request):void
+    public function store(Request $request)
     {
         $this->messages = $request->session()->get('messages', [
             ['role' => 'system', 'content' => 'You are LaravelGPT - A ChatGPT clone. Answer as concisely as possible.'],
@@ -66,8 +64,6 @@ class Chat extends Component
 
     /**
      * Reset the session and deletes the messages.
-     *
-     * @param Request $request
      */
     public function destroy(Request $request): void
     {
