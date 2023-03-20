@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\OpenAiController;
 use Illuminate\Support\Facades\Route;
 
 /*
