@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Livewire\Chat;
-use OpenAI\Laravel\Facades\OpenAI;
-use Tests\TestCase;
 use Livewire\Livewire;
-
+use OpenAI\Laravel\Facades\OpenAI;
 
 it('can see the home page', function () {
     Livewire::test(Chat::class)
@@ -32,14 +30,11 @@ it('can post a message to openai api', function () {
 
     $this->messages[] = [
         'role' => 'assistant',
-        'content' => $response->toArray()['choices'][0]['message']['content']
+        'content' => $response->toArray()['choices'][0]['message']['content'],
     ];
     expect($this->messages)->toBe([
         ['role' => 'system', 'content' => 'You are LaravelGPT - A ChatGPT clone. Answer as concisely as possible.'],
         ['role' => 'user', 'content' => 'Hello World'],
         ['role' => 'assistant', 'content' => 'Hi there! How can I assist you today?'],
     ]);
-
 });
-
-
